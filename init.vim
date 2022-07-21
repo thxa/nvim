@@ -27,7 +27,7 @@ set shortmess+=c
 " set smartcase
 " set wildmenu
 " colorscheme molokai
-" hi Normal guifg=#44cc44 guibg=NONE ctermbg=none
+hi Normal guifg=#44cc44 guibg=NONE ctermbg=NONE
 
 """Plugs
 call plug#begin('plugged')
