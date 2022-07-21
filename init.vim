@@ -30,7 +30,7 @@ set shortmess+=c
 hi Normal guifg=#44cc44 guibg=NONE ctermbg=NONE
 
 """Plugs
-call plug#begin('plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 Plug 'tpope/vim-surround' " Surrounding ysw)
 Plug 'preservim/nerdtree' " NerdTree
@@ -49,7 +49,7 @@ Plug 'glepnir/dashboard-nvim'
 
 call plug#end()
 
-colorscheme PaperColor
+:colorscheme PaperColor
 set encoding=UTF-8
 set completeopt-=preview " For No Previews
 
