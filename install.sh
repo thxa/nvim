@@ -8,4 +8,4 @@ cd $COC_INSTALL
 yarn install && yarn build
 cd $BASE_DIR
 
-nvim -c "CocInstall coc-python coc-java coc-clangd"
+nvim -c "CocInstall coc-python coc-java coc-clangd coc-lua coc-json coc-snippets"
