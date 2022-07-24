@@ -28,7 +28,6 @@ set shortmess+=c
 " set smartcase
 " set wildmenu
 " colorscheme molokai
-" hi Normal guifg=#44cc44 guibg=NONE ctermbg=NONE
 
 """Plugs
 call plug#begin('~/.config/nvim/plugged')
@@ -45,7 +44,6 @@ Plug 'tc50cal/vim-terminal' " Vim Terminal
 Plug 'preservim/tagbar' " Tagbar for code navigation
 Plug 'terryma/vim-multiple-cursors' " CTRL + N for multiple cursors
 Plug 'neoclide/coc.nvim'  " Auto Completion
-Plug 'junegunn/fzf.vim' 
 Plug 'glepnir/dashboard-nvim'
 
 "For run media-files.
@@ -55,7 +53,9 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-media-files.nvim'
 call plug#end()
 
-:colorscheme PaperColor
+colorscheme gruvbox
+hi Normal guibg=none guifg=none ctermbg=none
+
 set encoding=UTF-8
 set completeopt-=preview " For No Previews
 
