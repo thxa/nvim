@@ -9,23 +9,17 @@ set shiftwidth=4
 set softtabstop=4
 set mouse=a
 set nobackup
-" set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+set smartcase
+set expandtab
+set nowrap
+set nohlsearch
+set incsearch
 
-" for coc 
-set hidden
-set nobackup
-set nowritebackup
-set cmdheight=2
-set updatetime=300
-set shortmess+=c
+" set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
 " set cursorline
 " set cursorcolumn
-" set expandtab
-" set nowrap
-" set incsearch
 " set ignorecase
-" set smartcase
 " set wildmenu
 " colorscheme molokai
 
@@ -59,6 +53,14 @@ hi Normal guibg=none guifg=none ctermbg=none
 set encoding=UTF-8
 set completeopt-=preview " For No Previews
 
+" for coc 
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+
 " --- Just Some Notes ---
 " :PlugClean :PlugInstall :UpdateRemotePlugins
 "
@@ -70,14 +72,37 @@ set completeopt-=preview " For No Previews
 
 """ Mapping
 
+let mapleader=" "
+
+nnoremap <left> b
+nnoremap <right> w
+
+
 " NERDTree
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="~"
 
-nnoremap <C-n> :NERDTreeFocus<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+
+
+inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
+
+" Tagbar key maps
 nmap <F8> :TagbarToggle<CR>
+
+" telescope keys maps
+nnoremap <leader>f :Telescope find_files <CR>
+nnoremap <leader>g :Telescope livegrep   <CR>
+nnoremap <leader>w :Telescope current_buffer_fuzzy_find <CR>
+nnoremap <leader>k :Telescope keymaps    <CR>
+nnoremap <leader>m :Telescope man_pages  <CR>
+nnoremap <leader>t :Telescope filetypes  <CR>
+nnoremap <leader><Tab> :Telescope oldfiles <CR><CR>
+
+
+nnoremap <C-s> :w <CR>
+
 
 
 " air-line
@@ -96,4 +121,3 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
