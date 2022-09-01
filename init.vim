@@ -77,6 +77,11 @@ let mapleader=" "
 nnoremap <left> b
 nnoremap <right> w
 
+nnoremap <F5> :w <CR> :!g++ -o %:r % && xfce4-terminal -e ./%:r -H <CR>
+nnoremap <F7> :w <CR> :!g++ -o %:r % && ./%:r < %:r.in <CR>
+nnoremap <F6> :e %:r.in <CR> 
+nnoremap <F2> :!cat %<CR>
+
 
 " NERDTree
 let g:NERDTreeDirArrowExpandable="+"
@@ -93,7 +98,7 @@ nmap <F8> :TagbarToggle<CR>
 
 " telescope keys maps
 nnoremap <leader>f :Telescope find_files <CR>
-nnoremap <leader>g :Telescope livegrep   <CR>
+nnoremap <leader>g :Telescope live_grep <CR>
 nnoremap <leader>w :Telescope current_buffer_fuzzy_find <CR>
 nnoremap <leader>k :Telescope keymaps    <CR>
 nnoremap <leader>m :Telescope man_pages  <CR>
@@ -103,7 +108,14 @@ nnoremap <leader><Tab> :Telescope oldfiles <CR><CR>
 
 nnoremap <C-s> :w <CR>
 
-
+" If the current file type is HTML, set indentation to 2 spaces.
+autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype css setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype js setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype clang setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype cpp setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype java setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype py setlocal tabstop=4 shiftwidth=4 expandtab
 
 " air-line
 let g:airline_powerline_fonts = 1
