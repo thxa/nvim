@@ -90,8 +90,7 @@ let g:NERDTreeDirArrowCollapsible="~"
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
-
-inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
+inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#pum#confirm() : "<Tab>"
 
 " Tagbar key maps
 nmap <F8> :TagbarToggle<CR>
@@ -132,4 +131,5 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
+
 
