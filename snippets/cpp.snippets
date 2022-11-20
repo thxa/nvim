@@ -1,5 +1,5 @@
 snippet m
-//#include<iostream>
+ #include<iostream>
 using namespace std;
 int
 main()
@@ -11,13 +11,83 @@ main()
 
 
 snippet mcp "For Comptitve programming" b
-//#include<bits/stdc++.h>
-using namespace std;
-int 
-main()
+ #include<bits/stdc++.h>
+ using namespace std;
+ #pragma GCC	    optimize ("O3")
+
+ #define int		 long long
+ #define ll		 long long
+ #define all(a)		 a.begin(), a.end() 
+ #define vi		 vector<int>
+ #define pii		 pair<int,int>
+ #define mod		 (int)1e9+7
+ #define FAST		 ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0); clock_t z = clock();
+
+void 
+solve()
 {
-  ios_base::sync_with_stdio(false);
-  cin.tie(0);
 
 }
 
+
+signed
+main()
+{
+  FAST
+  int t = 1;
+  cin >> t;
+  while(t--) solve();
+  cerr << "Run Time : " << ((double)(clock() - z)/CLOCKS_PER_SEC);
+}
+
+snippet heap
+struct
+greater_p_s 
+{ 
+  constexpr int operator()(
+    pair<int,int> const& a,
+    pair<int,int> const& b)
+  {
+    return a.second < b.second;
+  }
+}; 
+ #define que_max	 priority_queue<int>
+ #define que_min	 priority_queue<int, vi, greater<int>>
+ #define que_max_s	 priority_queue<pii, vpi, greater_s>
+ 
+
+snippet vppi
+
+ #define vpi		 vector<pii>
+ #define vpp		 vector<pair<int, pii>>
+ #define svpi(a)	 sort(all(a), [&](pii a, pii b) { return a.second < b.second;})
+
+
+snippet number_t
+vi
+divisors(int n)
+{
+  vi v;
+  for(int i=1; i*i<=n; i++) {
+    if(n % i == 0) {
+      v.push_back(i);
+      if(i != n/i) v.push_back(n/i);
+    }
+  }
+  return v;
+}
+int gcd(int a, int b) { return b==0? a: gcd(a, b%a); }
+int lcm(int a, int b) {	return a / __gcd(a, b) * b;  }
+int 
+binpow(int a, int b, int m)
+{
+    a %= m;
+    int res = 1;
+    while (b > 0) {
+        if (b & 1)
+            res = res * a % m;
+        a = a * a % m;
+        b >>= 1;
+    }
+    return res;
+}

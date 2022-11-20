@@ -14,7 +14,7 @@ set expandtab
 set nowrap
 set nohlsearch
 set incsearch
-
+set clipboard=unnamedplus
 " set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
 " set cursorline
@@ -45,10 +45,14 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-media-files.nvim'
+
+Plug 'MunifTanjim/nui.nvim'        " it's a dependency
+Plug 'xeluxee/competitest.nvim'
+
 call plug#end()
 
 colorscheme gruvbox
-hi Normal guibg=none guifg=none ctermbg=none
+" hi Normal guibg=none guifg=none ctermbg=none
 
 set encoding=UTF-8
 set completeopt-=preview " For No Previews
@@ -76,11 +80,13 @@ let mapleader=" "
 
 nnoremap <left> b
 nnoremap <right> w
+nnoremap <c-/> <gcc>
 
 nnoremap <F5> :w <CR> :!g++ -o %:r % && xfce4-terminal -e ./%:r -H <CR>
 nnoremap <F7> :w <CR> :!g++ -o %:r % && ./%:r < %:r.in <CR>
 nnoremap <F6> :e %:r.in <CR> 
 nnoremap <F2> :!cat %<CR>
+nnoremap <F3> :!cat % \| xclip -sel clip<CR>
 
 
 " NERDTree
