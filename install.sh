@@ -1,5 +1,8 @@
 BASE_DIR=pwd
 COC_INSTALL=plugged/coc.nvim/
+# install packer manager for plugings
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 nvim -c "PlugInstall"
 sudo pacman -S ctags yarn python-pip
