@@ -1,5 +1,4 @@
 local g = vim.g
-
 vim.cmd("colorscheme gruvbox")
 
 -- o.colorscheme="gruvbox"

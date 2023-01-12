@@ -1,5 +1,0 @@
-{
-    "jedi.executable.command": "jedi-language-server",
-    "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
-    "snippets.ultisnips.pythonPrompt": false
-}

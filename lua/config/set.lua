@@ -35,7 +35,10 @@ o.shortmess="c"
 -- colorscheme molokai
 
 
+
+
 -- vim.api.nvim_create_autocmd('Filetype', {  })
+--
 -- " If the current file type is HTML, set indentation to 2 spaces.
 -- autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab
 -- autocmd Filetype css setlocal tabstop=2 shiftwidth=2 expandtab
