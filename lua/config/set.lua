@@ -1,40 +1,37 @@
-local o = vim.o -- options
-
-o.number = true
-o.relativenumber = true
-o.scrolloff = 10
-o.autoindent=true
-o.smarttab = true
-o.shiftwidth=4
-o.softtabstop=4
-o.mouse="a"
-o.nobackup=true
-o.smartcase=true
-o.expandtab=true
-o.nowrap=true
-o.nohlsearch=true
-o.incsearch=true
-o.clipboard="unnamedplus"
-o.encoding="UTF-8"
+-- local o = vim.o -- options
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.scrolloff = 10
+vim.o.autoindent=true
+vim.o.smarttab = true
+vim.o.shiftwidth=4
+vim.o.softtabstop=4
+vim.o.mouse="a"
+vim.o.nobackup=true
+vim.o.smartcase=true
+vim.o.expandtab=true
+vim.o.nowrap=true
+vim.o.nohlsearch=true
+vim.o.incsearch=true
+vim.o.clipboard="unnamedplus"
+vim.o.encoding="UTF-8"
 -- o.completeopt -= o.preview
-o.completeopt = -1
-
+vim.o.completeopt = -1
 -- for coc --
-o.hidden = true
-o.nobackup = true
-o.nowritebackup = true
-o.cmdheight=2
-o.updatetime=300
-o.shortmess="c"
-
+vim.o.hidden = true
+vim.o.nobackup = true
+vim.o.nowritebackup = true
+vim.o.cmdheight=2
+vim.o.updatetime=300
+vim.o.shortmess="c"
+--
 -- set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 -- set cursorline
 -- set cursorcolumn
 -- set ignorecase
 -- set wildmenu
 -- colorscheme molokai
-
-
+vim.cmd[[colorscheme tokyonight]]
 
 
 -- vim.api.nvim_create_autocmd('Filetype', {  })
