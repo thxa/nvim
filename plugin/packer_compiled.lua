@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/t/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/t/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/t/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/t/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/t/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/home/t/.cache/nvim/packer_hererocks/2.1.1702233742/share/lua/5.1/?.lua;/home/t/.cache/nvim/packer_hererocks/2.1.1702233742/share/lua/5.1/?/init.lua;/home/t/.cache/nvim/packer_hererocks/2.1.1702233742/lib/luarocks/rocks-5.1/?.lua;/home/t/.cache/nvim/packer_hererocks/2.1.1702233742/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/t/.cache/nvim/packer_hererocks/2.1.1702233742/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -87,6 +87,12 @@ _G.packer_plugins = {
     path = "/home/t/.local/share/nvim/site/pack/packer/opt/barbecue.nvim",
     url = "https://github.com/utilyre/barbecue.nvim"
   },
+  ["block.nvim"] = {
+    config = { "\27LJ\2\n7\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\nblock\frequire\0" },
+    loaded = true,
+    path = "/home/t/.local/share/nvim/site/pack/packer/start/block.nvim",
+    url = "https://github.com/HampusHauffman/block.nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/t/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -118,7 +124,7 @@ _G.packer_plugins = {
     url = "https://github.com/xeluxee/competitest.nvim"
   },
   ["dashboard-nvim"] = {
-    config = { "\27LJ\2\n�\3\0\0\5\0\v\0\0196\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0024\3\5\0005\4\6\0>\4\1\0035\4\a\0>\4\2\0035\4\b\0>\4\3\0035\4\t\0>\4\4\3=\3\n\2B\0\2\1K\0\1\0\rshortcut\1\0\4\bkey\6d\vaction\23Telescope dotfiles\ngroup\vNumber\tdesc\17 dotfiles\1\0\4\bkey\6a\vaction\18Telescope app\ngroup\19DiagnosticHint\tdesc\r Apps\1\0\6\bkey\6f\vaction\25Telescope find_files\ficon_hl\14@variable\ticon\t \ngroup\nLabel\tdesc\nFiles\1\0\4\bkey\6u\vaction\16Lazy update\ngroup\14@property\tdesc\15 Update\16week_header\1\0\0\1\0\1\venable\2\nsetup\14dashboard\frequire\0" },
+    config = { "\27LJ\2\n�\3\0\0\5\0\v\0\0196\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0024\3\5\0005\4\6\0>\4\1\0035\4\a\0>\4\2\0035\4\b\0>\4\3\0035\4\t\0>\4\4\3=\3\n\2B\0\2\1K\0\1\0\rshortcut\1\0\4\ngroup\vNumber\tdesc\17 dotfiles\bkey\6d\vaction\23Telescope dotfiles\1\0\4\ngroup\19DiagnosticHint\tdesc\r Apps\bkey\6a\vaction\18Telescope app\1\0\6\ticon\t \tdesc\nFiles\bkey\6f\vaction\25Telescope find_files\ngroup\nLabel\ficon_hl\14@variable\1\0\4\ngroup\14@property\tdesc\15 Update\bkey\6u\vaction\16Lazy update\16week_header\1\0\0\1\0\1\venable\2\nsetup\14dashboard\frequire\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
@@ -144,6 +150,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/t/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
+  ["magma-nvim"] = {
+    loaded = true,
+    path = "/home/t/.local/share/nvim/site/pack/packer/start/magma-nvim",
+    url = "https://github.com/dccsillag/magma-nvim"
   },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
@@ -215,6 +226,11 @@ _G.packer_plugins = {
     path = "/home/t/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
+  tcomment_vim = {
+    loaded = true,
+    path = "/home/t/.local/share/nvim/site/pack/packer/start/tcomment_vim",
+    url = "https://github.com/tomtom/tcomment_vim"
+  },
   ["telescope-media-files.nvim"] = {
     loaded = true,
     path = "/home/t/.local/share/nvim/site/pack/packer/start/telescope-media-files.nvim",
@@ -230,11 +246,6 @@ _G.packer_plugins = {
     path = "/home/t/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
-  ["tokyonight.nvim"] = {
-    loaded = true,
-    path = "/home/t/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
-    url = "https://github.com/folke/tokyonight.nvim"
-  },
   ["vim-LanguageTool"] = {
     loaded = true,
     path = "/home/t/.local/share/nvim/site/pack/packer/start/vim-LanguageTool",
@@ -249,6 +260,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/t/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
+  },
+  ["vim-jukit"] = {
+    loaded = true,
+    path = "/home/t/.local/share/nvim/site/pack/packer/start/vim-jukit",
+    url = "https://github.com/luk400/vim-jukit"
   },
   ["vim-multiple-cursors"] = {
     loaded = true,
@@ -268,6 +284,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: block.nvim
+time([[Config for block.nvim]], true)
+try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\nblock\frequire\0", "config", "block.nvim")
+time([[Config for block.nvim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd nvim-web-devicons ]]

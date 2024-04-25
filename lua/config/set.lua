@@ -24,6 +24,9 @@ vim.o.nowritebackup = true
 vim.o.cmdheight=2
 vim.o.updatetime=300
 vim.o.shortmess="c"
+
+
+-- vim.api.nvim_command("BlockOn")
 --
 -- set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 -- set cursorline
@@ -31,7 +34,7 @@ vim.o.shortmess="c"
 -- set ignorecase
 -- set wildmenu
 -- colorscheme molokai
-vim.cmd[[colorscheme tokyonight]]
+-- vim.cmd[[colorscheme tokyonight]]
 
 
 -- vim.api.nvim_create_autocmd('Filetype', {  })

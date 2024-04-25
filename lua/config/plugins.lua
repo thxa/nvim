@@ -11,18 +11,12 @@ return require('packer').startup(function(use)
   }
   use 'tpope/vim-surround' -- Surrounding ysw
   use "nvim-tree/nvim-tree.lua"
-  -- use 'preservim/nerdtree' -- NerdTree
-  -- use 'dense-analysis/ale'
 
   use 'tpope/vim-commentary' -- For Commenting gcc & gc
-  -- use 'rafi/awesome-vim-colorschemes' -- Retro Scheme
 
-  use 'folke/tokyonight.nvim'
   use 'navarasu/onedark.nvim'
 
   -- use 'pruse/tagbar' -- Tagbar for code navigation
-  -- use 'neoclide/coc.nvim'  -- Auto Completion
-
   use 'terryma/vim-multiple-cursors' -- CTRL + N for multiple cursors
 
   use {
@@ -59,9 +53,6 @@ return require('packer').startup(function(use)
       }
   }
 
-      -- config = function()
-          -- require('dashboard').setup {
-          -- }
      end,
       requires = {'nvim-tree/nvim-web-devicons'}
   }
@@ -73,6 +64,7 @@ return require('packer').startup(function(use)
   }
 
 
+  use { 'dccsillag/magma-nvim', run = ':UpdateRemotePlugins' }
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
@@ -80,11 +72,7 @@ return require('packer').startup(function(use)
   use 'MunifTanjim/nui.nvim'        -- it's a dependency
   use 'xeluxee/competitest.nvim'
   use 'nvim-telescope/telescope-project.nvim'
-  use {
-      'nvim-treesitter/nvim-treesitter', {run= ':TSUpdate'}
-  }
-  -- use 'sirver/ultisnips'
-  -- use 'yamatsum/nvim-nonicons'
+  use {'nvim-treesitter/nvim-treesitter', {run= ':TSUpdate'}}
 
   use {
       'VonHeikemen/lsp-zero.nvim',
@@ -124,4 +112,13 @@ return require('packer').startup(function(use)
   })
 
   use 'lervag/vimtex'
+  use({
+      "HampusHauffman/block.nvim",
+      config = function()
+          require("block").setup({})
+      end
+  })
+  use 'luk400/vim-jukit'
+  use 'tomtom/tcomment_vim'
+
 end)

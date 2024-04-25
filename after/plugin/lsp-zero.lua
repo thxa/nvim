@@ -25,12 +25,12 @@ lsp.set_preferences({
     -- sign_icons = {}
 })
 -- lsp.nvim_workspace()
-require('luasnip.loaders.from_snipmate').lazy_load()
+require('luasnip.loaders.from_snipmate').lazy_load({paths={"~/.config/nvim/snippets"}})
 lsp.setup_nvim_cmp({
     mapping = cmp_mappings,
     sources = {
-        {name= '~/.config/nvim/snippets'},
-    --     {name = 'path'},
+        -- {name= '~/.config/nvim/snippets'},
+        {name = 'luasnip'},
         {name = 'nvim_lsp', keyword_length = 1},
         {name = 'buffer', keyword_length = 1},
     }

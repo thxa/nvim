@@ -1,0 +1,131 @@
+snippet main_r
+    \documentclass[12pt,a4paper,twoside]{report}
+    \usepackage[top=1in,bottom=1in,left=1in,right=1in]{geometry} % for setting page size and margins
+    % \usepackage[a4paper]{geometry} % for setting page size and margins
+    \usepackage{setspace}
+    %\usepackage[T1]{fontenc} % for Fonts
+    \usepackage[utf8]{inputenc}
+    \usepackage{tgbonum}   
+    \usepackage{graphicx}  % for including images, pdfs
+    \usepackage{subcaption}
+    \usepackage[sort&compress]{natbib}
+    \usepackage{microtype} % for typographical enhancements
+    \usepackage{amsmath}   % for equations and mathematics
+    \usepackage[hidelinks]{hyperref}  % for hyperlinks
+    \usepackage{titlesec}  % for formating title
+    %\usepackage{tikz-uml}  % for UML
+    \usepackage{import}    % for import file from diectory
+    % \usepackage{fullpage}  % sets all 4 side 1 ince
+    \usepackage{pdflscape}  % rotate pages
+    \usepackage{rotating, caption, lscape, threeparttable}
+    \usepackage{lastpage} % for LastPage
+    \usepackage{blindtext}
+    \usepackage{afterpage} % Remove blank before the page
+    \usepackage{fancyhdr} % for  change header and footer
+    % \usepackage[table]{xcolor} % For Coloring tables
+    \usepackage{xcolor,colortbl}
+
+    % \usepackage{biblatex}
+    % \addbibresource{ourbib.bib}
+    % For headers and footers
+    \pagestyle{fancy} % for active header and footer styling
+    \fancyhf{} % clear existing header/footer entries
+    % \renewcommand{\headrulewidth}{0.0pt}
+    % \renewcommand{\footrulewidth}{0.1pt}
+    \fancyhead[R]{\it{\nouppercase{\leftmark}}}
+    \fancyhead[L]{\it{\nouppercase{\rightmark}}}
+    \fancyhead[LE, RO]{\it{\thepage}}
+    \fancyfoot[R]{Page \thepage \hspace{1pt} of \pageref{LastPage}}
+    \fancyfoot[C]{}
+    % \cfoot{}
+    % \rfoot{\thepage\ of \pageref{LastPage}}
+
+    \setcounter{secnumdepth}{3}
+    \setcounter{tocdepth}{3}
+    \usepackage{emptypage}
+
+    \raggedbottom
+    \title{\includegraphics[scale=0.6]{gfx/logo.png} \\[3.5cm] The name of the project}
+    % \author{}
+    \begin{titlepage}
+	\begin{center}
+	    \vspace*{0.5cm}
+	    \includegraphics{gfx/logo.png}\\
+	   
+	    \vspace{1.2cm}
+	    {\huge \par}
+	    \vspace{0.8cm}
+	    {}
+	    \vspace{0.8cm}
+	    {\Large By}\\
+	    \vspace{0.3cm}
+	    { \textbf{THAMER ALHARBI}}\\
+	    \vspace{1.2cm}
+	    { The research work for the thesis has been carried out}\\
+	    \vspace{0.3cm}
+	    {\Large under the supervision of}\\
+	    \vspace{0.3cm}
+	    { names}
+	\end{center}
+    \end{titlepage}
+    \date{June 2023}
+    \begin{document}
+    \pagestyle{empty}
+    \maketitle
+    \cleardoublepage
+
+    \onehalfspacing
+    \pagenumbering{roman}
+    \pagestyle{plain}
+
+    \vspace{10mm}
+    \section*{\filcenter Acknowledgement}
+    \vspace{5mm}
+
+    We would like to express our heartfelt gratitude to all those who have supported us in the completion of this project.
+
+   \begin{center}
+	Thank you for your invaluable support and guidance.
+    \end{center}
+    \newpage
+
+    \begin{abstract}
+    \vspace{5mm}
+    \end{abstract}
+
+    \cleardoublepage
+    \tableofcontents
+    \listoffigures
+    \listoftables
+    \cleardoublepage
+
+    \doublespacing
+    \pagenumbering{arabic}
+    \pagestyle{fancy}
+    % Project Overview
+    \include{chapters/ch1}
+    % Software Requirement      
+    \include{chapters/ch2}
+    % System Desgin
+    \include{chapters/ch3}
+    % User Interface Desgin
+    \include{chapters/ch4}
+    % Testing
+    \include{chapters/ch5}
+    % Engineering Tools
+    \include{chapters/ch6}
+    % Conclusions
+    \include{chapters/ch7}
+
+    % \appendix
+    % \include{chapters/testing}
+
+    \singlespacing
+    % \bibliographystyle{plainnat}
+    \bibliography{ourbib}
+
+    \begin{thebibliography}{1}
+    \bibitem{}
+    \end{thebibliography}
+
+    \end{document}
