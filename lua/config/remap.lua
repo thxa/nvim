@@ -13,7 +13,7 @@ nnoremap("<F3>", ":!cat % | xclip -sel clip<CR>")
 nnoremap("<leader>c", ":cd %:p:h <CR>")
 -- nnoremap("<leader>r", ":Ex <CR>")
 nnoremap("<F6>", ":e %:r.in <CR>")
-
+nnoremap("<leader>p", ":lua require('img-clip').paste_image()<CR>")
 -- create new file
 -- nnoremap("<C-s>", ":w <CR>")
 
@@ -23,13 +23,13 @@ end
 
 -- telescope keys maps
 function Telescope_map()
-    nnoremap("<leader>f", ":Telescope find_files <CR>")
-    nnoremap("<leader>g", ":Telescope live_grep <CR>")
-    nnoremap("<leader>s", ":Telescope current_buffer_fuzzy_find <CR>")
-    nnoremap("<leader>k", ":Telescope keymaps    <CR>")
+    nnoremap("<leader>f", ":lua require'telescope.builtin'.find_files{results_ts_highlight = vim.o.filetype ~= 'tex'} <CR>")
+    nnoremap("<leader>g", ":lua require'telescope.builtin'.live_grep{results_ts_highlight = vim.o.filetype ~= 'tex'} <CR>")
+    nnoremap("<leader>s", ":lua require'telescope.builtin'.current_buffer_fuzzy_find{results_ts_highlight = vim.o.filetype ~= 'tex'} <CR>")
+    nnoremap("<leader>k", ":lua require'telescope.builtin'.keymaps{results_ts_highlight = vim.o.filetype ~= 'tex'} <CR>")
     nnoremap("<leader>m", ":Telescope man_pages  <CR>")
     nnoremap("<leader>t", ":Telescope filetypes  <CR>")
-    nnoremap("<leader><Tab>", ":Telescope oldfiles <CR><CR>")
+    nnoremap("<leader><Tab>", ":lua require'telescope.builtin'.oldfiles{results_ts_highlight = vim.o.filetype ~= 'tex'} <CR><CR>")
     vim.api.nvim_set_keymap(
     'n',
     '<C-p>',
@@ -182,18 +182,20 @@ function Latex_map()
 
 end
 
-
 function Julia_map()
     nnoremap("<leader>w", ":w <CR>" .. RunCommand("julia %"))
     nnoremap("<leader>e", ":w <CR> :!julia % < %:r.in <CR>")
 end
 
-
-
 function Json_map()
     nnoremap("<leader>w", ":%!jq '.'")
 end
 
+function Javascript()
+    -- nnoremap("<leader>w", ":w <CR>" .. RunCommand("node %"))
+    nnoremap("<leader>w", ":Prettier <CR> :w <CR>")
+    nnoremap("<leader>q", ":!node % <CR>")
+end
 
 
 -- keymaps shortcuts
@@ -202,9 +204,6 @@ NvimTree_map()
 -- Coc_map()
 -- Ntree_map()
 --
--- Set tcomment_vim configuration options
-vim.g.tcomment_mapleader1 = '<leader>f'  -- Leader key for commenting
-vim.g.tcomment_mapleader2 = '<leader>T'  -- Leader key for toggling comments
 
 -- vim.api.nvim_create_autocmd
 -- vim.api.nvim_command [[ autocmd BufRead,BufNewFile *.c c_map ]]
@@ -216,6 +215,8 @@ vim.api.nvim_command "autocmd Filetype python lua Python_map()"
 vim.api.nvim_command "autocmd Filetype tex lua Latex_map()"
 vim.api.nvim_command "autocmd Filetype julia lua Julia_map()"
 vim.api.nvim_command "autocmd Filetype json lua Json_map()"
+vim.api.nvim_command "autocmd Filetype Javascript lua Javascript_map()"
+
 
 -- cpp_map()
 
