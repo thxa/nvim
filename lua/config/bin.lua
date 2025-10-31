@@ -1,18 +1,48 @@
 local xxd_dump_cmd = 'xxd -g 1 -u'
 local xxd_cur_pos = nil
 
-local function is_binary_file()
-  local filename = vim.fn.expand('%:t')
-  -- local basename = string.match(filename, "^[a-z]*$")
-  -- local binary_ext = { 'png', 'jpg', 'jpeg', 'out' }
-  local binary_ext = {}
-  local ext = string.match(filename, "%.([^%.]+)$")
+-- local function is_binary_file()
+--   local filename = vim.fn.expand('%:t')
+--   -- local basename = string.match(filename, "^[a-z]*$")
+--   -- local binary_ext = { 'png', 'jpg', 'jpeg', 'out' }
+--   local binary_ext = {'Makefile'}
+--   local ext = string.match(filename, "%.([^%.]+)$")
 
-  if ext == nil and string.match(filename, '[a-z]+') then return true end
-  if vim.tbl_contains(binary_ext, ext) then return true end
+--   if ext == nil and string.match(filename, '[a-z]+') then return true end
+--   if vim.tbl_contains(binary_ext, ext) then return true end
+
+--   return false
+-- end
+
+
+-- List of files that should NOT be treated as binary
+local exclude_files = { "Makefile", "Dockerfile", "Doxyfile", "configure", "config"}
+
+local function is_binary_file()
+  local filename = vim.fn.expand('%:t') -- get base filename
+
+  -- If the file is in the exclude list, treat it as normal text
+  for _, f in ipairs(exclude_files) do
+    if filename == f then
+      return false
+    end
+  end
+
+  -- Check extension-based binaries
+  local ext = string.match(filename, "%.([^%.]+)$")
+  local binary_ext = {'png', 'jpg', 'jpeg', 'out'}
+  if ext and vim.tbl_contains(binary_ext, ext) then
+    return true
+  end
+
+  -- If no extension, heuristically treat as binary
+  if ext == nil and string.match(filename, '[a-z]+') then
+    return true
+  end
 
   return false
 end
+
 
 local function drop_undo_history()
   local undolevels = vim.o.undolevels

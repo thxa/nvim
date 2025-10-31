@@ -10,7 +10,7 @@ vim.g.mapleader=" "
 
 nnoremap("<F2>", ":!cat %<CR>")
 nnoremap("<F3>", ":!cat % | xclip -sel clip<CR>")
-nnoremap("<leader>c", ":cd %:p:h <CR>")
+nnoremap("<leader>c", ":!cd %:p:h <CR> :cd %:p:h <CR> :pwd <CR>")
 -- nnoremap("<leader>r", ":Ex <CR>")
 nnoremap("<F6>", ":e %:r.in <CR>")
 nnoremap("<leader>p", ":lua require('img-clip').paste_image()<CR>")
@@ -197,6 +197,15 @@ function Javascript()
     nnoremap("<leader>q", ":!node % <CR>")
 end
 
+function Markdown_map()
+    nnoremap("<leader>w", ":w <CR> :!pandoc % -o %:p:r.pdf   --template eisvogel   --pdf-engine=xelatex   --highlight-style=tango   -M link-citations=true   -f markdown+smart+fenced_divs+yaml_metadata_block -H head.tex <CR>")
+    nnoremap("<leader>r", ":silent !zathura %:p:r.pdf <CR>")
+end
+
+function Asm_map()
+    nnoremap("<leader>w", ":term fasm % && ./%:r<CR>")
+    nnoremap("<leader>r", ":term fasm % && r2 -d %:r <CR>iaaa<CR>v<CR>")
+end
 
 -- keymaps shortcuts
 Telescope_map()
@@ -216,9 +225,5 @@ vim.api.nvim_command "autocmd Filetype tex lua Latex_map()"
 vim.api.nvim_command "autocmd Filetype julia lua Julia_map()"
 vim.api.nvim_command "autocmd Filetype json lua Json_map()"
 vim.api.nvim_command "autocmd Filetype Javascript lua Javascript_map()"
-
-
--- cpp_map()
-
--- Tagbar key maps
--- nmap("<F8>", ":TagbarToggle<CR>")
+vim.api.nvim_command "autocmd Filetype markdown lua Markdown_map()"
+vim.api.nvim_command "autocmd Filetype asm lua Asm_map()"
