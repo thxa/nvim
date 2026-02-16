@@ -198,14 +198,20 @@ function Javascript()
 end
 
 function Markdown_map()
-    nnoremap("<leader>w", ":w <CR> :!pandoc % -o %:p:r.pdf   --template eisvogel   --pdf-engine=xelatex   --highlight-style=tango   -M link-citations=true   -f markdown+smart+fenced_divs+yaml_metadata_block -H head.tex <CR>")
-    nnoremap("<leader>r", ":silent !zathura %:p:r.pdf <CR>")
+    nnoremap("<leader>w", ":w <CR> :!pandoc % -o  %:p:r.pdf --resource-path {resource_path} --from markdown+yaml_metadata_block+raw_html --template eisvogel --table-of-contents --toc-depth 6 --number-sections --top-level-division=chapter --highlight-style breezedark --listings <CR>")
+    -- nnoremap("<leader>w", ":w <CR> :!pandoc % -o %:p:r.pdf   --template eisvogel   --pdf-engine=xelatex   --highlight-style=tango   -M link-citations=true   -f markdown+smart+fenced_divs+yaml_metadata_block -H head.tex <CR>")
+    nnoremap("<leader>r", ":silent !okular %:p:r.pdf& <CR>")
+    -- nnoremap("<leader>r", ":silent !zathura %:p:r.pdf& <CR>")
 end
 
 function Asm_map()
     nnoremap("<leader>w", ":term fasm % && ./%:r<CR>")
     nnoremap("<leader>r", ":term fasm % && r2 -d %:r <CR>iaaa<CR>v<CR>")
+    nnoremap("<leader>gd", ":term fasm % && gdb %:r <CR>")
 end
+
+
+
 
 -- keymaps shortcuts
 Telescope_map()

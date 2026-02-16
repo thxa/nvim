@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/t/.cache/nvim/packer_hererocks/2.1.1741730670/share/lua/5.1/?.lua;/home/t/.cache/nvim/packer_hererocks/2.1.1741730670/share/lua/5.1/?/init.lua;/home/t/.cache/nvim/packer_hererocks/2.1.1741730670/lib/luarocks/rocks-5.1/?.lua;/home/t/.cache/nvim/packer_hererocks/2.1.1741730670/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/t/.cache/nvim/packer_hererocks/2.1.1741730670/lib/lua/5.1/?.so"
+local package_path_str = "/home/t/.cache/nvim/packer_hererocks/2.1.1763148144/share/lua/5.1/?.lua;/home/t/.cache/nvim/packer_hererocks/2.1.1763148144/share/lua/5.1/?/init.lua;/home/t/.cache/nvim/packer_hererocks/2.1.1763148144/lib/luarocks/rocks-5.1/?.lua;/home/t/.cache/nvim/packer_hererocks/2.1.1763148144/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/t/.cache/nvim/packer_hererocks/2.1.1763148144/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -206,6 +206,11 @@ _G.packer_plugins = {
     path = "/home/t/.local/share/nvim/site/pack/packer/start/nvim-nonicons",
     url = "https://github.com/yamatsum/nvim-nonicons"
   },
+  ["nvim-numbertoggle"] = {
+    loaded = true,
+    path = "/home/t/.local/share/nvim/site/pack/packer/start/nvim-numbertoggle",
+    url = "https://github.com/sitiom/nvim-numbertoggle"
+  },
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "/home/t/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
@@ -274,6 +279,11 @@ _G.packer_plugins = {
     path = "/home/t/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["venn.nvim"] = {
+    loaded = true,
+    path = "/home/t/.local/share/nvim/site/pack/packer/start/venn.nvim",
+    url = "https://github.com/jbyuki/venn.nvim"
+  },
   ["vim-LanguageTool"] = {
     loaded = true,
     path = "/home/t/.local/share/nvim/site/pack/packer/start/vim-LanguageTool",
@@ -302,31 +312,31 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: indent-blankline.nvim
-time([[Config for indent-blankline.nvim]], true)
-try_loadstring("\27LJ\2\nü\3\0\0\5\0\17\00026\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\3\0005\4\4\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\5\0005\4\6\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\a\0005\4\b\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\t\0005\4\n\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\v\0005\4\f\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\r\0005\4\14\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\15\0005\4\16\0B\0\4\1K\0\1\0\1\0\1\afg\f#56B6C2\16RainbowCyan\1\0\1\afg\f#C678DD\18RainbowViolet\1\0\1\afg\f#98C379\17RainbowGreen\1\0\1\afg\f#D19A66\18RainbowOrange\1\0\1\afg\f#61AFEF\16RainbowBlue\1\0\1\afg\f#E5C07B\18RainbowYellow\1\0\1\afg\f#E06C75\15RainbowRed\16nvim_set_hl\bapi\bvimñ\2\1\0\6\0\r\0\0195\0\0\0006\1\1\0'\3\2\0B\1\2\0029\2\3\0019\4\4\0019\4\5\0043\5\6\0B\2\3\0016\2\1\0'\4\a\0B\2\2\0029\2\b\0025\4\v\0005\5\t\0=\0\n\5=\5\f\4B\2\2\1K\0\1\0\vindent\1\0\1\vindent\0\14highlight\1\0\1\14highlight\0\nsetup\bibl\0\20HIGHLIGHT_SETUP\ttype\rregister\14ibl.hooks\frequire\1\b\0\0\15RainbowRed\18RainbowYellow\16RainbowBlue\18RainbowOrange\17RainbowGreen\18RainbowViolet\16RainbowCyan\0", "config", "indent-blankline.nvim")
-time([[Config for indent-blankline.nvim]], false)
--- Config for: image.nvim
-time([[Config for image.nvim]], true)
-try_loadstring("\27LJ\2\n\23\0\3\a\0\0\0\4\18\3\2\0\18\5\0\0\18\6\1\0D\3\3\0Æ\1\1\0\6\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\b\0005\3\6\0005\4\4\0003\5\3\0=\5\5\4=\4\a\3=\3\t\2B\0\2\1K\0\1\0\17integrations\1\0\1\17integrations\0\rmarkdown\1\0\1\rmarkdown\0\23resolve_image_path\1\0\1\23resolve_image_path\0\0\nsetup\nimage\frequire\0", "config", "image.nvim")
-time([[Config for image.nvim]], false)
 -- Config for: block.nvim
 time([[Config for block.nvim]], true)
 try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\nblock\frequire\0", "config", "block.nvim")
 time([[Config for block.nvim]], false)
+-- Config for: image.nvim
+time([[Config for image.nvim]], true)
+try_loadstring("\27LJ\2\n\23\0\3\a\0\0\0\4\18\3\2\0\18\5\0\0\18\6\1\0D\3\3\0Æ\1\1\0\6\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\b\0005\3\6\0005\4\4\0003\5\3\0=\5\5\4=\4\a\3=\3\t\2B\0\2\1K\0\1\0\17integrations\1\0\1\17integrations\0\rmarkdown\1\0\1\rmarkdown\0\23resolve_image_path\1\0\1\23resolve_image_path\0\0\nsetup\nimage\frequire\0", "config", "image.nvim")
+time([[Config for image.nvim]], false)
+-- Config for: indent-blankline.nvim
+time([[Config for indent-blankline.nvim]], true)
+try_loadstring("\27LJ\2\nü\3\0\0\5\0\17\00026\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\3\0005\4\4\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\5\0005\4\6\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\a\0005\4\b\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\t\0005\4\n\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\v\0005\4\f\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\r\0005\4\14\0B\0\4\0016\0\0\0009\0\1\0009\0\2\0)\2\0\0'\3\15\0005\4\16\0B\0\4\1K\0\1\0\1\0\1\afg\f#56B6C2\16RainbowCyan\1\0\1\afg\f#C678DD\18RainbowViolet\1\0\1\afg\f#98C379\17RainbowGreen\1\0\1\afg\f#D19A66\18RainbowOrange\1\0\1\afg\f#61AFEF\16RainbowBlue\1\0\1\afg\f#E5C07B\18RainbowYellow\1\0\1\afg\f#E06C75\15RainbowRed\16nvim_set_hl\bapi\bvimñ\2\1\0\6\0\r\0\0195\0\0\0006\1\1\0'\3\2\0B\1\2\0029\2\3\0019\4\4\0019\4\5\0043\5\6\0B\2\3\0016\2\1\0'\4\a\0B\2\2\0029\2\b\0025\4\v\0005\5\t\0=\0\n\5=\5\f\4B\2\2\1K\0\1\0\vindent\1\0\1\vindent\0\14highlight\1\0\1\14highlight\0\nsetup\bibl\0\20HIGHLIGHT_SETUP\ttype\rregister\14ibl.hooks\frequire\1\b\0\0\15RainbowRed\18RainbowYellow\16RainbowBlue\18RainbowOrange\17RainbowGreen\18RainbowViolet\16RainbowCyan\0", "config", "indent-blankline.nvim")
+time([[Config for indent-blankline.nvim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
-vim.cmd [[ packadd nvim-web-devicons ]]
-vim.cmd [[ packadd barbecue.nvim ]]
-
--- Config for: barbecue.nvim
-try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rbarbecue\frequire\0", "config", "barbecue.nvim")
-
 vim.cmd [[ packadd nvim-treesitter ]]
 vim.cmd [[ packadd render-markdown.nvim ]]
 
 -- Config for: render-markdown.nvim
 try_loadstring("\27LJ\2\nA\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\20render-markdown\frequire\0", "config", "render-markdown.nvim")
+
+vim.cmd [[ packadd nvim-web-devicons ]]
+vim.cmd [[ packadd barbecue.nvim ]]
+
+-- Config for: barbecue.nvim
+try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rbarbecue\frequire\0", "config", "barbecue.nvim")
 
 time([[Sequenced loading]], false)
 

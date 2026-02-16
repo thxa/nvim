@@ -14,6 +14,8 @@ return require('packer').startup(function(use)
 
   use 'tpope/vim-commentary' -- For Commenting gcc & gc
 
+  use { "sitiom/nvim-numbertoggle" }
+  
   use 'navarasu/onedark.nvim'
 
   -- use 'pruse/tagbar' -- Tagbar for code navigation
@@ -22,6 +24,7 @@ return require('packer').startup(function(use)
       'HakonHarnes/img-clip.nvim',
   }
 
+  use "jbyuki/venn.nvim"
   -- use {
   --     'glepnir/dashboard-nvim',
   --     event = 'VimEnter',
